@@ -15,14 +15,14 @@
     </div>
 
     <div class="container">
-        <div class="gift-box">
-            <div class="lid">
+        <div class="gift-box" id="gift-box">
+            <div class="lid" id="lid">
                 <div class="bow"></div>
             </div>
             <div class="box"></div>
             <div class="ribbon"></div>
         </div>
-        <div class="message">
+        <div class="message" id="message">
             🎉 Feliz Aniversário, Nana! Te desejo tudo de bom e aproveite seu dia, meu amor!💗💗💗🎉
         </div>
     </div>
@@ -66,12 +66,14 @@
 
     <audio id="audio" src="audiooo.mp3" preload="auto"></audio>
 
-    <!-- Script JavaScript para reproduzir o áudio ao passar o mouse -->
+    <!-- Script JavaScript para reproduzir o áudio e abrir a caixa -->
     <script>
         const audioElement = document.getElementById('audio');
-        const giftBox = document.querySelector('.gift-box');
+        const giftBox = document.getElementById('gift-box');
+        const lid = document.getElementById('lid');
+        const message = document.getElementById('message');
 
-        // Função para reproduzir o áudio ao passar o mouse
+        // Função para reproduzir o áudio
         function playAudio() {
             audioElement.currentTime = 0; // Reinicia o áudio no começo
             audioElement.play().catch(error => {
@@ -79,8 +81,18 @@
             });
         }
 
-        // Adiciona o evento de mouseenter na caixa de presente
-        giftBox.addEventListener('mouseenter', playAudio);
+        // Função para abrir a caixa
+        function openGiftBox() {
+            lid.style.transition = 'transform 0.5s ease';
+            lid.style.transform = 'rotateY(180deg)'; // Gira a tampa para um lado
+            message.style.opacity = 1; // Mostra a mensagem
+        }
+
+        // Adiciona o evento de clique na caixa de presente
+        giftBox.addEventListener('click', function() {
+            playAudio();
+            openGiftBox();
+        });
     </script>
 
 </body>
