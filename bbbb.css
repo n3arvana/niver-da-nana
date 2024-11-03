@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://i.pinimg.com/564x/8b/b2/26/8bb226edd4de448ffc4e64b3fa7ca5ed.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px); /* Efeito de blur */
+    z-index: 1; /* Mantém o papel de parede atrás do conteúdo */
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    z-index: 10; /* Garante que o conteúdo fique acima do fundo desfocado */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.message {
+    margin-top: 25px;
+    font-size: 2.5rem;
+    color: #ff69b4;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+    font-family: 'Pacifico', cursive; /* Fonte personalizada */
+    z-index: 3; /* Garante que a mensagem está acima do fundo */
+}
+
+.gift-box {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    background-color: #8B0000;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    z-index: 2; /* Certifica-se de que a caixa de presente está acima do fundo */
+}
+
+.lid {
+    width: 150px;
+    height: 30px;
+    background-color: #8B0000;
+    border-radius: 10px 10px 0 0;
+    position: absolute;
+    top: -15px;
+    transition: transform 0.5s ease, top 0.5s ease;
+    transform-origin: top center;
+    z-index: 2; /* Certifica-se de que a tampa está acima do fundo */
+}
+
+.bow {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 15px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 3; /* Garante que o laço está acima da caixa */
+}
+
+.bow::before,
+.bow::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-color: #FFD700;
+    border-radius: 50% 50% 0 50%;
+    position: absolute;
+}
+
+.bow::before {
+    left: -10px;
+    transform: rotate(45deg);
+}
+
+.bow::after {
+    right: -10px;
+    transform: rotate(-45deg);
+}
+
+.ribbon {
+    width: 15px;
+    height: 150px;
+    background-color: #FFD700;
+    position: absolute;
+    left: 67.5px;
+    top: 0;
+    z-index: 2; /* Certifica-se de que a fita está acima do fundo */
+}
+
+.ribbon::before,
+.ribbon::after {
+    content: '';
+    width: 150px;
+    height: 15px;
+    background-color: #FFD700;
+    position: absolute;
+    top: 67.5px;
+    left: -67.5px;
+}
+
+.gift-box:hover .lid {
+    transform: rotateX(45deg);
+    top: -40px;
+}
+
+.gift-box:hover ~ .message {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.gallery {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.frame {
+    position: absolute;
+    width: 200px;
+    height: 260px;
+    border: 12px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    pointer-events: auto;
+    z-index: 3; /* Garante que as molduras estão acima do fundo */
+}
+
+.frame:hover {
+    transform: scale(1.1);
+}
+
+.frame::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    bottom: 15px;
+    left: 15px;
+    border: 3px solid #e6e6fa;
+    border-radius: 15px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Estilos para os stickers */
+.stickers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite que os cliques passem através dos stickers */
+}
+
+.sticker {
+    position: absolute;
+    width: 100px; /* Aumentando o tamanho dos stickers */
+    height: 100px; /* Aumentando o tamanho dos stickers */
+    background-color: rgba(255, 0, 0, 0); /* Cor de fundo temporária para visualizar os stickers */
+    border-radius: 10%; /* Para um efeito arredondado */
+    pointer-events: auto; /* Permite interação com os stickers */
+    z-index: 3; /* Garante que os stickers estão acima do fundo */
+}
+
+/* Estilos para o texto no topo com contorno */
+.top-text {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    font-family: 'Pacifico', cursive;
+    color: #ff69b4;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; /* Contorno preto */
+}
+
+.top-text h1 {
+    font-size: 3rem; /* Aumentando o tamanho da fonte */
+    margin: 0;
+}
+
+.top-text h2 {
+    font-size: 2.2rem; /* Aumentando o tamanho da fonte */
+    margin: 5px 0 20px;
+}
+
+/* ... seu código anterior ... */
+
+/* Estilos para o texto no topo com contorno */
+.top-text {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    font-family: 'Pacifico', cursive;
+    color: #ff69b4;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; /* Contorno preto */
+}
+
+.top-text h1 {
+    font-size: 3rem; /* Aumentando o tamanho da fonte */
+    margin: 0;
+}
+
+.top-text h2 {
+    font-size: 2.2rem; /* Aumentando o tamanho da fonte */
+    margin: 5px 0 20px;
+}
+
+/* Contorno preto para a mensagem da caixa de presente */
+.message {
+    margin-top: 25px;
+    font-size: 2.5rem;
+    color: #ff69b4;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+    font-family: 'Pacifico', cursive;
+    z-index: 3;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; /* Contorno preto */
+}
+
+
